@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,13 @@
 		C774F43F26E878E9001A20E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C774F43E26E878E9001A20E3 /* Preview Assets.xcassets */; };
 		C774F44A26E878E9001A20E3 /* ChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C774F44926E878E9001A20E3 /* ChatTests.swift */; };
 		C774F45526E878E9001A20E3 /* ChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C774F45426E878E9001A20E3 /* ChatUITests.swift */; };
+		C774F46426E878F4001A20E3 /* NCMB in Frameworks */ = {isa = PBXBuildFile; productRef = C774F46326E878F4001A20E3 /* NCMB */; };
+		C774F46626E87917001A20E3 /* KeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C774F46526E87917001A20E3 /* KeyManager.swift */; };
+		C774F46826E8792E001A20E3 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C774F46726E8792E001A20E3 /* ChatView.swift */; };
+		C774F46A26E87934001A20E3 /* APIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = C774F46926E87934001A20E3 /* APIKey.plist */; };
+		C774F46C26E8793F001A20E3 /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C774F46B26E8793F001A20E3 /* NameView.swift */; };
+		C774F46F26E8794A001A20E3 /* ChatScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C774F46D26E8794A001A20E3 /* ChatScreenModel.swift */; };
+		C774F47026E8794A001A20E3 /* ChatMessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C774F46E26E8794A001A20E3 /* ChatMessageRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +52,12 @@
 		C774F45026E878E9001A20E3 /* ChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C774F45426E878E9001A20E3 /* ChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUITests.swift; sourceTree = "<group>"; };
 		C774F45626E878E9001A20E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C774F46526E87917001A20E3 /* KeyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyManager.swift; sourceTree = "<group>"; };
+		C774F46726E8792E001A20E3 /* ChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		C774F46926E87934001A20E3 /* APIKey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKey.plist; sourceTree = "<group>"; };
+		C774F46B26E8793F001A20E3 /* NameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
+		C774F46D26E8794A001A20E3 /* ChatScreenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatScreenModel.swift; sourceTree = "<group>"; };
+		C774F46E26E8794A001A20E3 /* ChatMessageRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C774F46426E878F4001A20E3 /* NCMB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +109,12 @@
 		C774F43626E878E8001A20E3 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				C774F46E26E8794A001A20E3 /* ChatMessageRow.swift */,
+				C774F46D26E8794A001A20E3 /* ChatScreenModel.swift */,
+				C774F46B26E8793F001A20E3 /* NameView.swift */,
+				C774F46926E87934001A20E3 /* APIKey.plist */,
+				C774F46726E8792E001A20E3 /* ChatView.swift */,
+				C774F46526E87917001A20E3 /* KeyManager.swift */,
 				C774F43726E878E8001A20E3 /* ChatApp.swift */,
 				C774F43926E878E8001A20E3 /* ContentView.swift */,
 				C774F43B26E878E9001A20E3 /* Assets.xcassets */,
@@ -146,6 +166,9 @@
 			dependencies = (
 			);
 			name = Chat;
+			packageProductDependencies = (
+				C774F46326E878F4001A20E3 /* NCMB */,
+			);
 			productName = Chat;
 			productReference = C774F43426E878E8001A20E3 /* Chat.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +240,9 @@
 				Base,
 			);
 			mainGroup = C774F42B26E878E8001A20E3;
+			packageReferences = (
+				C774F46226E878F4001A20E3 /* XCRemoteSwiftPackageReference "ncmb_swift" */,
+			);
 			productRefGroup = C774F43526E878E8001A20E3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C774F46A26E87934001A20E3 /* APIKey.plist in Resources */,
 				C774F43F26E878E9001A20E3 /* Preview Assets.xcassets in Resources */,
 				C774F43C26E878E9001A20E3 /* Assets.xcassets in Resources */,
 			);
@@ -259,8 +286,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C774F47026E8794A001A20E3 /* ChatMessageRow.swift in Sources */,
+				C774F46826E8792E001A20E3 /* ChatView.swift in Sources */,
 				C774F43A26E878E8001A20E3 /* ContentView.swift in Sources */,
+				C774F46C26E8793F001A20E3 /* NameView.swift in Sources */,
+				C774F46F26E8794A001A20E3 /* ChatScreenModel.swift in Sources */,
 				C774F43826E878E8001A20E3 /* ChatApp.swift in Sources */,
+				C774F46626E87917001A20E3 /* KeyManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +606,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C774F46226E878F4001A20E3 /* XCRemoteSwiftPackageReference "ncmb_swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NIFCLOUD-mbaas/ncmb_swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C774F46326E878F4001A20E3 /* NCMB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C774F46226E878F4001A20E3 /* XCRemoteSwiftPackageReference "ncmb_swift" */;
+			productName = NCMB;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C774F42C26E878E8001A20E3 /* Project object */;
 }

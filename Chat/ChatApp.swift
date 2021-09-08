@@ -2,16 +2,62 @@
 //  ChatApp.swift
 //  Chat
 //
-//  Created by Atsushi on 2021/09/08.
+//  Created by Atsushi on 2021/09/07.
 //
 
 import SwiftUI
+import NCMB
 
 @main
 struct ChatApp: App {
+    @Environment(\.scenePhase) private var scenePhase
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+        .onChange(of: scenePhase) { scene in
+            switch scene {
+            case .active:
+                // キーの設定
+                let applicationKey = KeyManager().getValue(key: "ApplicationKey") as! String
+                let clientKey = KeyManager().getValue(key: "ClientKey") as! String
+                // 初期化
+                NCMB.initialize(applicationKey: applicationKey, clientKey: clientKey)
+                NCMBUser.enableAutomaticUser()
+                checkAuth()
+                if checkSession() == false {
+                    checkAuth()
+                }
+            case .background: break
+            case .inactive: break
+            default: break
+            }
+        }
+    }
+    
+    func checkAuth() -> Void {
+        // 認証データがあれば処理は終了
+        if NCMBUser.currentUser != nil {
+            return;
+        }
+        // 匿名認証実行
+        _ = NCMBUser.automaticCurrentUser()
+    }
+    
+    // セッションの有効性をチェックする関数
+    func checkSession() -> Bool {
+        var query : NCMBQuery<NCMBObject> = NCMBQuery.getQuery(className: "Todo")
+        query.limit = 1 // レスポンス件数を最小限にする
+        // アクセス
+        let results = query.find()
+        // 結果の判定
+        switch results {
+        case .success(_): break
+        case .failure(_):
+            // 強制ログアウト処理
+            _ = NCMBUser.logOut()
+            return false
+        }
+        return true
     }
 }
