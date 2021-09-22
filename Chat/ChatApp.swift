@@ -21,11 +21,11 @@ struct ChatApp: App {
                 // キーの設定
                 let applicationKey = KeyManager().getValue(key: "ApplicationKey") as! String
                 let clientKey = KeyManager().getValue(key: "ClientKey") as! String
-                // 初期化
-                NCMB.initialize(applicationKey: applicationKey, clientKey: clientKey)
-                NCMBUser.enableAutomaticUser()
+                // 認証チェック
                 checkAuth()
+                // セッションの有効性チェック
                 if checkSession() == false {
+                    // セッションが不正なら再度認証チェック
                     checkAuth()
                 }
             case .background: break
@@ -36,28 +36,10 @@ struct ChatApp: App {
     }
     
     func checkAuth() -> Void {
-        // 認証データがあれば処理は終了
-        if NCMBUser.currentUser != nil {
-            return;
-        }
-        // 匿名認証実行
-        _ = NCMBUser.automaticCurrentUser()
     }
     
     // セッションの有効性をチェックする関数
     func checkSession() -> Bool {
-        var query : NCMBQuery<NCMBObject> = NCMBQuery.getQuery(className: "Todo")
-        query.limit = 1 // レスポンス件数を最小限にする
-        // アクセス
-        let results = query.find()
-        // 結果の判定
-        switch results {
-        case .success(_): break
-        case .failure(_):
-            // 強制ログアウト処理
-            _ = NCMBUser.logOut()
-            return false
-        }
         return true
     }
 }

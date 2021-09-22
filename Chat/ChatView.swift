@@ -60,19 +60,6 @@ struct ChatView: View {
     }
     
     func getPastMessages() {
-        var query = NCMBQuery.getQuery(className: "Chat")
-        query.order = ["createDate"]
-        query.limit = 20
-        query.findInBackground(callback: { result in
-            switch result {
-            case let .success(ary):
-                DispatchQueue.main.async {
-                    chat.messages = ary
-                }
-                break
-            case .failure(_): break
-            }
-        })
     }
     
     private func scrollToLastMessage(proxy: ScrollViewProxy) {
@@ -83,22 +70,8 @@ struct ChatView: View {
         }
     }
     
+    // チャットメッセージを送信する関数
     func send() {
-        let obj = NCMBObject(className: "Chat")
-        obj["body"] = message
-        let user = NCMBUser.currentUser
-        obj["userId"] = user!.objectId
-        
-        var acl = NCMBACL.empty
-        acl.put(key: "*", readable: true, writable: false)
-        acl.put(key: user!.objectId!, readable: true, writable: true)
-        obj.acl = acl
-        if let displayName: String = user!["displayName"] {
-            obj["displayName"] = displayName
-        }
-        _ = obj.save()
-        message = ""
-        chat.send(obj: obj)
     }
 }
 

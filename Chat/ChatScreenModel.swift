@@ -38,18 +38,6 @@ final class ChatScreenModel: ObservableObject {
                 // テキストをデータ化
                 let data: Data =  msg.data(using: String.Encoding.utf8)!
                 do {
-                    // JSONとしてパース
-                    let params = try JSONSerialization.jsonObject(with: data) as! Dictionary<String, String>
-                    // NCMBObjectとして作り直し
-                    let obj = NCMBObject(className: "Chat")
-                    obj["displayName"] = params["displayName"]
-                    obj.objectId = params["objectId"]
-                    obj["userId"] = params["userId"]
-                    obj["body"] = params["body"]
-                    obj["createDate"] = params["createDate"]
-                    DispatchQueue.main.async {
-                        self.messages.append(obj) // メッセージの配列に追加
-                    }
                 } catch {
                 }
                 break
@@ -68,28 +56,6 @@ final class ChatScreenModel: ObservableObject {
     
     // NCMBObjectをDictionaryにして、JSON文字列にする関数
     private func makeMessage(obj: NCMBObject) -> String {
-        // Dictionaryの準備
-        var json = Dictionary<String, String>()
-        json["objectId"] = obj.objectId! // チャットメッセージのobjectId
-        if let body: String = obj["body"] { // チャットメッセージ
-            json["body"] = body
-        }
-        if let userId: String = obj["userId"] { // チャットの送信者
-            json["userId"] = userId
-        }
-        if let displayName: String = obj["displayName"] { // 表示名
-            json["displayName"] = displayName
-        }
-        // 投稿日時
-        let formatter = ISO8601DateFormatter()
-        json["createDate"] = formatter.string(from: Date())
-        do {
-            // Dictionaryを文字列化
-            let jsonData = try JSONSerialization.data(withJSONObject: json)
-            return String(bytes: jsonData, encoding: .utf8)!
-        } catch (let e) {
-            print(e)
-        }
         return "" // エラーの場合
     }
     
