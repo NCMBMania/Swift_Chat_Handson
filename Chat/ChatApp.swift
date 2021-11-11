@@ -13,11 +13,9 @@ struct ChatApp: App {
     @Environment(\.scenePhase) private var scenePhase
     var body: some Scene {
         WindowGroup {
-            ContentView()
-        }
-        .onChange(of: scenePhase) { scene in
-            switch scene {
-            case .active:
+            VStack {
+                ContentView()
+            }.onAppear {
                 // キーの設定
                 let applicationKey = KeyManager().getValue(key: "ApplicationKey") as! String
                 let clientKey = KeyManager().getValue(key: "ClientKey") as! String
@@ -28,9 +26,6 @@ struct ChatApp: App {
                     // セッションが不正なら再度認証チェック
                     checkAuth()
                 }
-            case .background: break
-            case .inactive: break
-            default: break
             }
         }
     }
